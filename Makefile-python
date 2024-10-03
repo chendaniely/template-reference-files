@@ -1,0 +1,16 @@
+VENV_DIR = venv
+
+PHONY: setup_python
+setup_python:
+	$(MAKE) clean_venv
+	python -m venv $(VENV_DIR)
+	. $(VENV_DIR)/bin/activate && pip install --upgrade pip
+	$(MAKE) install_requirements
+
+PHONY: setup_python_install
+setup_python_install:
+	. $(VENV_DIR)/bin/activate && pip install -r requirements.txt
+
+PHONY: clean_venv
+clean_venv:
+	rm -rf $(VENV_DIR)
